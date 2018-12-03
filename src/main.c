@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    main.c
   * @author  Jhony Benites, Brno University of Technology, Czechia
-			 Originally from labs guided by doc. Ing. Tomas Fryza, Ph.D.
+	     Originally from labs guided by doc. Ing. Tomas Fryza, Ph.D.
   * @version V1.1
   * @date    Nov 19, 2018
   * @brief   Home Security System with 2 PIR sensors, LCD interface and buzzer
@@ -65,7 +65,7 @@ struct
 	unsigned int left   : 1;
 	unsigned int right  : 1;
 	unsigned int up     : 1;
-    unsigned int down   : 1;
+    unsigned int down       : 1;
 	unsigned int select : 1;
 } buttons_pressed;
 
@@ -86,16 +86,16 @@ struct
  */
 struct
 {
-	unsigned int LCD_text_blink		: 1;
+	unsigned int LCD_text_blink	: 1;
 	unsigned int button_debounce	: 1;
-	unsigned int code_timeout		: 1;
+	unsigned int code_timeout	: 1;
 	unsigned int PIR_sensor_sample	: 1;
 	unsigned int alarm_both         : 1;
 	unsigned int alarm_left         : 1;
 	unsigned int alarm_right        : 1;
-	unsigned int alarm		        : 1;
-	unsigned int pin_mode			: 1;
-	unsigned int puk_mode			: 1;
+	unsigned int alarm		: 1;
+	unsigned int pin_mode		: 1;
+	unsigned int puk_mode		: 1;
 	unsigned int change_pin_mode	: 1;
 	unsigned int new_pin_mode       : 1;
 } flags;
@@ -105,10 +105,10 @@ struct
  */
 struct
 {
-	unsigned int LCD_text_blink : 1;
-	unsigned int button_debounce : 1;
-	unsigned int code_timeout : 1;
-	unsigned int PIR_sensor_sample : 1;
+	unsigned int LCD_text_blink     : 1;
+	unsigned int button_debounce    : 1;
+	unsigned int code_timeout       : 1;
+	unsigned int PIR_sensor_sample  : 1;
 } timers_enable;
 
 /* Function prototypes -------------------------------------------------------*/
@@ -180,7 +180,7 @@ void board_init(void)
 {
 	buttons_debounced.down = 0;
 	buttons_debounced.up = 0;
-    buttons_debounced.left = 0;
+    	buttons_debounced.left = 0;
 	buttons_debounced.right = 0;
 	buttons_debounced.select = 0;
 
@@ -244,7 +244,7 @@ void board_init(void)
 	TCCR0A |= (1 << WGM01);
 	
 	/* Clock prescaler 64 => clock prescaled to 250 kHz */
-    TCCR0B |= (1 << CS01) | (1 << CS00);
+    	TCCR0B |= (1 << CS01) | (1 << CS00);
 	
 	/* Output Compare register A set to 250 => interrupt every 1ms */
 	OCR0A = 250;
@@ -252,7 +252,7 @@ void board_init(void)
 	/* Compare match A interrupt enable */
 	TIMSK0 |= (1 << OCIE0A);
 
-    /*Enable global interrupts*/
+    	/*Enable global interrupts*/
 	sei();
 	
 	return;
@@ -344,7 +344,7 @@ void PIR_sensor_sample(void)
 	uint8_t state_new_left_sensor = 0, state_new_right_sensor = 0;
 
 	state_new_right_sensor = PINB & (1 << PORTB4);
-    state_new_left_sensor = PINB & (1 << PORTB3);
+    	state_new_left_sensor = PINB & (1 << PORTB3);
 
 	/*  Detection of rising edge */
 	if(state_new_left_sensor > state_old_left_sensor && state_new_right_sensor > state_old_right_sensor && (!flags.alarm_both))
