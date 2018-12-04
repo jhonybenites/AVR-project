@@ -234,8 +234,8 @@ void board_init(void)
 	lcd_gotoxy(4,1);
 	lcd_puts("SAFE :)");
 
-	/*ADC for buttons init */
-	/*ADC0 channel, voltage reference to AVCC */
+	/* ADC for buttons init */
+	/* ADC0 channel, voltage reference to AVCC */
 	ADMUX |= (1 << REFS0);
 	ADCSRA |= (1 << ADEN) | (1 << ADIE) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); 
 	
@@ -252,7 +252,7 @@ void board_init(void)
 	/* Compare match A interrupt enable */
 	TIMSK0 |= (1 << OCIE0A);
 
-    	/*Enable global interrupts*/
+    	/* Enable global interrupts */
 	sei();
 	
 	return;
