@@ -12,7 +12,6 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-
 #include "settings.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -65,7 +64,7 @@ struct
 	unsigned int left   : 1;
 	unsigned int right  : 1;
 	unsigned int up     : 1;
-    unsigned int down       : 1;
+        unsigned int down   : 1;
 	unsigned int select : 1;
 } buttons_pressed;
 
@@ -235,7 +234,7 @@ void board_init(void)
 	lcd_puts("SAFE :)");
 
 	/* ADC for buttons init */
-	/* ADC0 channel, voltage reference to AVCC */
+	/* ADC0 channel, voltage reference to AVcc */
 	ADMUX |= (1 << REFS0);
 	ADCSRA |= (1 << ADEN) | (1 << ADIE) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); 
 	
